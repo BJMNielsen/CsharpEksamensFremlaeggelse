@@ -1,0 +1,14 @@
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\bin\Debug\net7.0\CsharpEksamensFremlæggelse.exe
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\bin\Debug\net7.0\CsharpEksamensFremlæggelse.deps.json
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\bin\Debug\net7.0\CsharpEksamensFremlæggelse.runtimeconfig.json
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\bin\Debug\net7.0\CsharpEksamensFremlæggelse.dll
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\bin\Debug\net7.0\CsharpEksamensFremlæggelse.pdb
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.AssemblyInfoInputs.cache
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.AssemblyInfo.cs
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.csproj.CoreCompileInputs.cache
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.dll
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\refint\CsharpEksamensFremlæggelse.dll
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.pdb
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.genruntimeconfig.cache
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\ref\CsharpEksamensFremlæggelse.dll
