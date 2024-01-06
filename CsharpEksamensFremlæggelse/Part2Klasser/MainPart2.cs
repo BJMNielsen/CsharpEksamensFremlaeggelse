@@ -31,10 +31,50 @@ public class MainPart2
         
         //   ARV   \\ --------------------------------------------------------------------------
         
-        Bil minBil = new Bil();
-        minBil.Mærke = "Toyota"; // Arvet fra baseklassen Køretøj
-        minBil.AntalDøre = 4; // Property der tilhøre derived class "Bil"
-        minBil.Start(); // Arvet metode fra Køretøj
+        Car minCar = new Car(); // Bruger no arg constructor der udnytter constructor chaining to chain a call til en base (Vehicle) class constructor
+        minCar.DisplayInfo();
+        minCar.Year = 2010; // Variablen Year er Arvet fra baseklassen Vehicle
+        minCar.Model = "Toyota"; // Variablen Model er Arvet fra baseklassen Vehicle
+        minCar.HorsePower = 4; // Variablen der tilhøre derived class Car
+        minCar.DisplayInfo(); // Metode der er derived class Car, som tager brug af den samme metode i base klassen Vehicle
+        Console.WriteLine();
+        
+        
+        //   STATIC VS DYNAMIC METHOD DISPATCH   \\ --------------------------------------------------------------------------
+        
+        // STATIC 
+        BaseClass bc = new BaseClass();
+        Console.Write("BaseClass bc = new BaseClass(): ");
+        bc.StaticMethod();
+        BaseClass bcdc = new DerivedClass();
+        Console.Write("BaseClass bcdc = new DerivedClass(): ");
+        bcdc.StaticMethod();
+        DerivedClass dc = new DerivedClass();
+        Console.Write("DerivedClass dc = new DerivedClass(): ");
+        dc.StaticMethod();
+        Console.WriteLine("Dvs den eneste måde vi når ned til StaticMethod i DerivedClass klassen er, hvis vi instantiere et new DerivedClass objekt fra datatypen DerivedClass ");
+        Console.WriteLine();
+        
+        // Dynamic
+        
+        BaseClass vbc = new BaseClass(); // 
+        Console.Write("BaseClass vbc = new BaseClass(): ");
+        vbc.DynamicMethod();
+        BaseClass vbcdc = new DerivedClass();
+        Console.Write("BaseClass vbcdc = new DerivedClass(): ");
+        vbcdc.DynamicMethod();
+        DerivedClass vdc = new DerivedClass();
+        Console.Write("DerivedClass vdc = new DerivedClass(): ");
+        vdc.DynamicMethod();
+        Console.WriteLine("DVS det er dynamisk, da både vbcdc og vbc kalder først DynamicMethod i DerivedClass, og hvis ikke den eksistere der, kalder den DynamicMethod i BaseKlassen.");
+        Console.WriteLine();
+        
+        // En liste af vehicles af en bil, cykel og færge, som hver især har en metode der afspiller en lyd, som er arvet fra en lignende metode i vehicle
+        // For at kunne afspille den specifikke lyd fra hvert objekt, så skal enten:
+        // Static method: hvert objekt laves (castes) om til datatypen den kom af, ellers kaldes den statiske metode i vehicle
+        // Dynamic method: hvert objekt kan dynamisk afspille deres specifikke lyd, hvis metoden (override) eksisterer, ellers kaldes (virtual) metoden i vehicle
+        
+
     }
 
     public class Person
@@ -58,20 +98,90 @@ public class MainPart2
     }
 
 
-// Baseklasse
-    public class Køretøj
+    // ARV \\
+    // Baseklasse
+    public class Vehicle
     {
-        public string Mærke { get; set; }
-
-        public void Start()
+        public int Year { get; set; } // Production year
+        public string Model { get; set; }
+        
+        protected Vehicle(int year, string model)
         {
-            Console.WriteLine("Køretøjet starter.");
+            Year = year;
+            Model = model;
         }
+        
+        // Parameterless constructor chaining to set default values
+        public Vehicle() : this(1994, "Unknown Model")
+        {
+            
+        }
+        
+        public void DisplayInfo()
+        {
+            Console.WriteLine($"Model: {Model}, Year: {Year}");
+        }
+        
     }
 
-// Derived klasse
-    public class Bil : Køretøj
+    // ARV \\
+    // Derived klasse
+    public class Car : Vehicle
     {
-        public int AntalDøre { get; set; }
+        public int HorsePower { get; set; }
+
+        // Constructor chaining to call the base class constructor
+        public Car(string model, int year, int horsePower) : base(year, model)
+        {
+            HorsePower = horsePower;
+        }
+
+        // Additional constructor chaining within the derived class, default values for a Car object; no arg constructor
+        public Car() : this("Unknown Model", DateTime.Now.Year, 65)
+        {
+        }
+
+        public new void DisplayInfo()
+        {
+            base.DisplayInfo(); // Vi kalder base klassen (Vehicle) metoden DisplayInfo fra den derived klasse (Car)
+            Console.WriteLine($"HorsePower: {HorsePower}");
+        }
+
+        // Additional method specific to cars
+        public void Honk()
+        {
+            Console.WriteLine("Honk! Honk!");
+        }
+    }
+    
+    // STATIC VS DYNAMIC METHOD DISPATCH \\
+
+    public class BaseClass
+    {
+        public void StaticMethod()
+        {
+            Console.WriteLine("Base - StaticMethod");
+        }
+
+        // Enable dynamic method dispatch with the keyword VIRTUAL
+        // A virtual method specify that it may be replace with another at runtime
+        public virtual void DynamicMethod()
+        {
+            Console.WriteLine("Base - Virtual DynamicMethod");
+        }
+    }
+    
+    public class DerivedClass : BaseClass
+    {
+        public new void StaticMethod()
+        {
+            Console.WriteLine("Derived - StaticMethod");
+        }
+
+        // Her specifier vi med OVERRIDE at vi vil override vores VIRTUAL DynamicMethod i baseklassen.
+        public override void DynamicMethod()
+        {
+            Console.WriteLine("Derived - Actual DynamicMethod");
+        }
     }
 }

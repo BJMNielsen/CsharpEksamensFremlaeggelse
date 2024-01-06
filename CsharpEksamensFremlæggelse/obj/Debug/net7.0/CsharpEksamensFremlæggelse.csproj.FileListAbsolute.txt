@@ -12,3 +12,4 @@ C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggels
 C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.pdb
 C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.genruntimeconfig.cache
 C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\ref\CsharpEksamensFremlæggelse.dll
+C:\Users\admin\Documents\Datamatiker\4semester\Csharp\CsharpEksamensFremlæggelse\CsharpEksamensFremlæggelse\obj\Debug\net7.0\CsharpEksamensFremlæggelse.sourcelink.json

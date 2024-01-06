@@ -7,10 +7,10 @@ using CsharpEksamensFremlæggelse.Part4Abstraktioner;
 using CsharpEksamensFremlæggelse.Part5LINQ;
 using CsharpEksamensFremlæggelse.Part6FunctionalProgramming;
 
-MainPart1.Run();
+// MainPart1.Run();
 // MainPart2.Run();
 // MainPart3.Run();
-// MainPart4.Run();
+MainPart4.Run();
 // MainPart5.Run();
 // MainPart6.Run();
 

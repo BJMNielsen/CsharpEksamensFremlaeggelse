@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CsharpEksamensFremlæggelse")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d54fff66795c11ebefc851f8b405020d46fde115")]
 [assembly: System.Reflection.AssemblyProductAttribute("CsharpEksamensFremlæggelse")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CsharpEksamensFremlæggelse")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
