@@ -6,6 +6,7 @@ public class MainPart1
      public static void Run()
      {
           //   VALUE TYPER   \\ --------------------------------------------------------------------------
+          Console.WriteLine("------------VALUE TYPES-----------------------------------------------------------------------------------------------");
 
           // Value typer opbevarer data direkte i deres hukommelsesområde.
           // Almindelige eksempler er de indbyggede datatyper som int, double, char, float og bool.
@@ -26,6 +27,7 @@ public class MainPart1
           
           
           //   REFERENCE TYPER   \\ --------------------------------------------------------------------------
+          Console.WriteLine("------------REFERENCE TYPES-----------------------------------------------------------------------------------------------");
 
           // Reference typer opbevarer en reference (eller en pointer) til den faktiske data i hukommelsen.
           // Klasser, arrays, delegates og interfaces er eksempler på reference typer.
@@ -43,9 +45,7 @@ public class MainPart1
 
           
           //   Operator Overload   \\ --------------------------------------------------------------------------
-
-          
-          
+          Console.WriteLine("------------OPERATOR OVERLOAD-----------------------------------------------------------------------------------------------");
           
           Point p1 = new Point(1, 2);
           Point p2 = new Point(3, 4);
@@ -60,7 +60,8 @@ public class MainPart1
           
           
           //   METHOD PARAMETERS: IN / OUT / REF   \\ --------------------------------------------------------------------------
-
+          Console.WriteLine("------------METHOD PARAMETERS: IN / OUT / REF-----------------------------------------------------------------------------------------------");
+          
           int inArg = 1;
           int outArg;
           int refArg = 3;
@@ -76,6 +77,8 @@ public class MainPart1
           
           
           //   METHOD PARAMETERS: Positional / Named / Default   \\ --------------------------------------------------------------------------
+          Console.WriteLine("------------METHOD PARAMETERS: Positional / Named / Default -----------------------------------------------------------------------------------------------");
+
           // Positional parameter call
           mainPart1.EksempelMetode2("Hej", "Hans");
           

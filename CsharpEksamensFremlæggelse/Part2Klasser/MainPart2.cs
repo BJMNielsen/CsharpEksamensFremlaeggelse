@@ -22,6 +22,8 @@ public class MainPart2
         // I C# bruges accessibility-niveauer (også kendt som adgangsmodifikatorer) til at styre adgangen til klasser og deres medlemmer
         // (som felter, metoder, konstruktører osv.). Disse modifikatorer bestemmer, hvilken kode der kan få adgang til disse klasser og medlemmer.
 
+        Console.WriteLine("------------ACCESSIBILITY, OBJECT INITIALIZERS, CONSTRUCTORS, OBJECT INITIALIZERS-----------------------------------------------------------------------------------------------");
+
         Person p1 = new Person(2) { Name = "Lars" };
         // p1._name kan vi ikke få fat i da _name er private.
         p1.Age = 2; // Age og Name kan vi få fat i, da de er public.
@@ -30,7 +32,8 @@ public class MainPart2
         
         
         //   ARV   \\ --------------------------------------------------------------------------
-        
+        Console.WriteLine("------------ARV-----------------------------------------------------------------------------------------------");
+
         Car minCar = new Car(); // Bruger no arg constructor der udnytter constructor chaining to chain a call til en base (Vehicle) class constructor
         minCar.DisplayInfo();
         minCar.Year = 2010; // Variablen Year er Arvet fra baseklassen Vehicle
@@ -41,7 +44,8 @@ public class MainPart2
         
         
         //   STATIC VS DYNAMIC METHOD DISPATCH   \\ --------------------------------------------------------------------------
-        
+        Console.WriteLine("------------STATIC VS DYNAMIC METHOD DISPATCH-----------------------------------------------------------------------------------------------");
+
         // STATIC 
         BaseClass bc = new BaseClass();
         Console.Write("BaseClass bc = new BaseClass(): ");
@@ -98,7 +102,7 @@ public class MainPart2
     }
 
 
-    // ARV \\
+    // ARV \\ ------------------------------------------------------------------------------------------------------------------------
     // Baseklasse
     public class Vehicle
     {
@@ -123,8 +127,7 @@ public class MainPart2
         }
         
     }
-
-    // ARV \\
+    
     // Derived klasse
     public class Car : Vehicle
     {
@@ -154,7 +157,7 @@ public class MainPart2
         }
     }
     
-    // STATIC VS DYNAMIC METHOD DISPATCH \\
+    // STATIC VS DYNAMIC METHOD DISPATCH \\------------------------------------------------------------------------------------------------------------------------
 
     public class BaseClass
     {
@@ -184,4 +187,32 @@ public class MainPart2
             Console.WriteLine("Derived - Actual DynamicMethod");
         }
     }
+    
+    // ------------------- ABSTRACT ------------------------------------------------------------------------------------------------------------------ \\
+    public abstract class Animal
+    {
+        public abstract void MakeSound();
+
+        public void Move()
+        {
+            Console.WriteLine("Moving");
+        }
+    }
+
+    public class Dog : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Bark");
+        }
+    }
+
+    public class Cat : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("Meow");
+        }
+    }
+
 }
