@@ -4,7 +4,17 @@ public class MainPart6
 {
     public static void Run()
     {
-        Console.WriteLine("---------------------FP CONSTRUCT------------------------------------------------\n");
+        Console.WriteLine("---------------------FUNCTIONAL CONSTRUCTS------------------------------------------------\n");
+        
+        // Functional constructs er alle de her ting vi skal snakke om. Det er de functional programming concepts
+        // 1. Immutable data structures (records)
+        // 2. Lambda
+        // 3. LINQ / Extension methods
+        // 4. High order functions
+        // 5. Tuples and deconstruction
+        // 6. Pattern matching
+
+        
 
         Console.WriteLine("---------------------RECORDS-----------------------------------------------------\n");
 
