@@ -14,18 +14,20 @@ public class MainPart4
         Car c1 = new Car();
         Console.WriteLine(c1.IsEngineRunning);
         c1.StartEngine(true);
+        
         c1.StopEngine();
         Console.WriteLine();
 
         // Nu har jeg adgang til default metoden.
-        IDriveable c2 = new Car();
-        c2.defaultMethod();
+        // Delcared type IDrivable
+        IDriveable c2 = new Car(); // Actual type Car
+        c2.DefaultMethod(); // Giver adgang til default metoden
         Console.WriteLine();
 
         // EXPLICIT IMPLEMENTATION
-        c1.OpenDoor();
+        c1.OpenDoor(); // Car c1 = new Car();
         // Explicit methods are only available when referencing as the interface, not class ie: "IDriveable c2 = new Car();", NOT "Car c1 = new Car();"
-        c2.OpenDoor();
+        c2.OpenDoor(); // IDriveable c2 = new Car();
         Console.WriteLine();
 
 
@@ -45,6 +47,7 @@ public class MainPart4
 
         // Her fjerner vi en metode fra eventet
         vegas.WhenShowStartsEvent -= vegas.SinatraSing;
+        vegas.WhenShowStartsEvent += () => Console.WriteLine("\t Heyoo");
         vegas.StartShow();
 
 
@@ -52,8 +55,7 @@ public class MainPart4
             "---------------------LAMBDAS -------------------------------------------------------------------------------------------------");
         //  the lambda expressions provide a way to define functionality on-the-fly, without the need for a separate method
 
-        // To typer lamba BODIES: Expression eller Statement.
-
+        // To typer lamba BODIES: Expression eller Statement:
         // EXPRESSION lambda
         var expressionLambda = (int num) => num * 5; // Skrives på én linje
 
@@ -67,20 +69,22 @@ public class MainPart4
         //  TWO TYPES OF LAMBDA
 
         // ACTION LAMBDA : Returner ikke noget (consume data)
+        // to måder at skrive dem på:
         Action<int> actionLambda = (num) => Console.WriteLine($"Lars er {num} år gammel"); // 
         var actionLambda2 = (int num) => Console.WriteLine($"Lars er {num} år gammel"); // 
 
         // FUNC : Returner noget (generate result)
         Func<int, string> funcLambda = (num) => $"Vi konvertere {num} til en string"; // modtager int, returner string
-        var funcLambda2 = (int num) => num * 5; // Skrives på én linje
+        var funcLambda2 = (int num) => num * 5; // Skrives på én linje - Modtager int returner int.
         
         
         Console.WriteLine("Bruger en Func lambda (funcLambda2) til at give dets resultat til en Action lambda (actionLambda), for at udskrive:");
         actionLambda(funcLambda2(10));
         
-        Console.WriteLine("------------------------------------------------------------------------\n");
+        Console.WriteLine("---------------------------------------------------------------------------------------------------\n");
         
         // HIGHER ORDER FUNCTIONS
+        // Funktioner der forventer at modtage andre funktioner.
 
         // Liste af byer
         List<string> cities = new List<string> { "Paris", "Copenhagen", "Mumbai" };
@@ -89,7 +93,7 @@ public class MainPart4
         cities.ForEach(city => Console.WriteLine($"{city.ToUpper()}")); // Lambda tillader den her inline style som gør koden kompakt og nem at læse
         Console.WriteLine();
 
-        // Her bruger vi en normal funktion til det. Kræver mere kode
+        // Her bruger vi en normal funktion til det. Kræver mere kode, der er spredt
         PrintCities(cities);
         Console.WriteLine();
 
@@ -101,8 +105,9 @@ public class MainPart4
         // Her har vi lavet en higher order function der kan tage imod en ACTION<string> LAMBDA function som parameter
         PrintCities(cities, printStringToLower);
         PrintCities(cities, printStringToUpper);
-        PrintCities(cities, txt => Console.WriteLine(txt.ToLower()));
-        PrintCities(cities, (string txt) => Console.WriteLine(txt.ToUpper()));
+        
+        PrintCities(cities, txt => Console.WriteLine(txt.ToLower())); // inline
+        PrintCities(cities, (string txt) => Console.WriteLine(txt.ToUpper())); // inline, fint hvis ikke det er mere komplekst
         
     }
 
@@ -111,12 +116,12 @@ public class MainPart4
     // Definering af et interface
     public interface IDriveable
     {
-        bool IsEngineRunning { get; set; } // Property deklaration
-        void StartEngine(bool hasKey); // Just specifies the contract, NOT the implementation.
-        void StopEngine(); // Just specifies the contract, NOT the implementation.
+        bool IsEngineRunning { get; set; } // Property deklaration. Just specifies the contract, NOT the implementation(ingen metode krop).
+        void StartEngine(bool hasKey); 
+        void StopEngine(); 
         void OpenDoor();
 
-        void defaultMethod() // Kan bruges med implementationen af den klasse som bruger interfacet.
+        void DefaultMethod() // Kan bruges med implementationen af den klasse som bruger interfacet. Default methods HAR en krop.
         {
             Console.WriteLine("Hey i'm a default method in the interface WITH an implementation.");
         }
@@ -152,20 +157,21 @@ public class MainPart4
             if (IsEngineRunning)
             {
                 Console.WriteLine("The engine has been shut off");
+                IsEngineRunning = false;
             }
             else
             {
-                Console.WriteLine("Engine is running already...");
-                IsEngineRunning = false;
+                Console.WriteLine("Engine is already shut off...");
             }
         }
 
         // EXPLICIT IMPLEMENTATION
         // Does not require public, includes interface name, better readability. Mandatory if implementing 2 interfaces with same method signature.
-        void IDriveable.OpenDoor() // explicitly name the method when implementing
+        void IDriveable.OpenDoor() // explicitly name the method and interface when implementing
         {
             Console.WriteLine("The door has now been opened using an explicit implemented method.");
         }
+        // void ISailable.OpenDoor() Hvis vi havde et ISailable interface med samme metode navn.
 
         public void OpenDoor()
         {

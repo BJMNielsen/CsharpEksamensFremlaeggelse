@@ -22,9 +22,10 @@ public class MainPart2
         // I C# bruges accessibility-niveauer (også kendt som adgangsmodifikatorer) til at styre adgangen til klasser og deres medlemmer
         // (som felter, metoder, konstruktører osv.). Disse modifikatorer bestemmer, hvilken kode der kan få adgang til disse klasser og medlemmer.
 
-        Console.WriteLine("------------ACCESSIBILITY, OBJECT INITIALIZERS, CONSTRUCTORS, OBJECT INITIALIZERS-----------------------------------------------------------------------------------------------");
+        Console.WriteLine("------------ACCESSIBILITY, OBJECT INITIALIZERS-----------------------------------------------------------------------------------------------");
 
-        Person p1 = new Person(2) { Name = "Lars" };
+        Person p1 = new Person(2) { Name = "Lars" }; // Objekt initialize uden at kalde en constructor. Fleksibelt
+        
         // p1._name kan vi ikke få fat i da _name er private.
         p1.Age = 2; // Age og Name kan vi få fat i, da de er public.
         p1.Name = "Børge";
@@ -32,7 +33,7 @@ public class MainPart2
         
         
         //   ARV   \\ --------------------------------------------------------------------------
-        Console.WriteLine("------------ARV-----------------------------------------------------------------------------------------------");
+        Console.WriteLine("------------ARV, CONSTRUCTORS-----------------------------------------------------------------------------------------------");
 
         Car minCar = new Car(); // Bruger no arg constructor der udnytter constructor chaining to chain a call til en base (Vehicle) class constructor
         minCar.DisplayInfo();
@@ -46,27 +47,36 @@ public class MainPart2
         //   STATIC VS DYNAMIC METHOD DISPATCH   \\ --------------------------------------------------------------------------
         Console.WriteLine("------------STATIC VS DYNAMIC METHOD DISPATCH-----------------------------------------------------------------------------------------------");
 
-        // STATIC 
+        // STATIC  dispatch
+        // Sker ved kompileringstid. 
+        // Dette betyder, at metodekaldet er bundet til en specifik metode ved kompileringstid baseret på objektets erklærede type
+        
+        // Declared type (venstre side) // Actual/Dynamic type (højre side)
         BaseClass bc = new BaseClass();
         Console.Write("BaseClass bc = new BaseClass(): ");
-        bc.StaticMethod();
+        bc.StaticMethod(); // Metodekaldet er bundet til en specifik metode ved kompileringstid baseret på objektets erklærede type
+        
         BaseClass bcdc = new DerivedClass();
         Console.Write("BaseClass bcdc = new DerivedClass(): ");
         bcdc.StaticMethod();
+        
         DerivedClass dc = new DerivedClass();
         Console.Write("DerivedClass dc = new DerivedClass(): ");
         dc.StaticMethod();
         Console.WriteLine("Dvs den eneste måde vi når ned til StaticMethod i DerivedClass klassen er, hvis vi instantiere et new DerivedClass objekt fra datatypen DerivedClass ");
         Console.WriteLine();
         
-        // Dynamic
+        // DYNAMIC dispatch
+        // Sker ved kørselstid, baseret på objektets faktiske type under kørselstid, ikke den deklarerede type
         
         BaseClass vbc = new BaseClass(); // 
         Console.Write("BaseClass vbc = new BaseClass(): ");
-        vbc.DynamicMethod();
+        vbc.DynamicMethod(); // Metode der skal kaldes, bestemmes ved kørselstid baseret på objektets faktiske type, ikke den deklarerede type
+        
         BaseClass vbcdc = new DerivedClass();
         Console.Write("BaseClass vbcdc = new DerivedClass(): ");
         vbcdc.DynamicMethod();
+        
         DerivedClass vdc = new DerivedClass();
         Console.Write("DerivedClass vdc = new DerivedClass(): ");
         vdc.DynamicMethod();
@@ -77,6 +87,7 @@ public class MainPart2
         // For at kunne afspille den specifikke lyd fra hvert objekt, så skal enten:
         // Static method: hvert objekt laves (castes) om til datatypen den kom af, ellers kaldes den statiske metode i vehicle
         // Dynamic method: hvert objekt kan dynamisk afspille deres specifikke lyd, hvis metoden (override) eksisterer, ellers kaldes (virtual) metoden i vehicle
+
         
 
     }
@@ -92,8 +103,27 @@ public class MainPart2
             get { return _name; }
             set { _name = value; }
         }
+        
+        public int MyProperty { get; set; } // auto implemented property. Kompilatoren generere selv et bagvedliggende field. Kompakt når der ikke er brug for logik.
+        
+        private int _age;
 
-        public int Age { get; set; }
+        public int Age
+        {
+            get => _age;
+            set 
+            {
+                if (value < 0)
+                {
+                    Console.WriteLine("Alder kan ikke være negativ. Alder er sat til 0.");
+                    _age = 0;
+                }
+                else
+                {
+                    _age = value;
+                }
+            }
+        }
 
         public Person(int age)
         {
@@ -104,12 +134,12 @@ public class MainPart2
 
     // ARV \\ ------------------------------------------------------------------------------------------------------------------------
     // Baseklasse
-    public class Vehicle
+    public abstract class Vehicle // vi laver vehicle abstract.
     {
         public int Year { get; set; } // Production year
         public string Model { get; set; }
         
-        protected Vehicle(int year, string model)
+        protected Vehicle(int year, string model) // protected er ligesom private, bortset fra at alt der nedarver også kan tilgå det.
         {
             Year = year;
             Model = model;
@@ -125,7 +155,9 @@ public class MainPart2
         {
             Console.WriteLine($"Model: {Model}, Year: {Year}");
         }
-        
+
+        public abstract void Vroom(); // abstrakt metode SKAL implementeres af derived klasser
+
     }
     
     // Derived klasse
@@ -155,6 +187,11 @@ public class MainPart2
         {
             Console.WriteLine("Honk! Honk!");
         }
+
+        public override void Vroom()
+        {
+            Console.WriteLine("VROOM VROOM");
+        }
     }
     
     // STATIC VS DYNAMIC METHOD DISPATCH \\------------------------------------------------------------------------------------------------------------------------
@@ -167,8 +204,8 @@ public class MainPart2
         }
 
         // Enable dynamic method dispatch with the keyword VIRTUAL
-        // A virtual method specify that it may be replace with another at runtime
-        public virtual void DynamicMethod()
+        public virtual void DynamicMethod() // A virtual method specify that it may be replace with another at runtime (dvs vores derived klasses override metode)
+
         {
             Console.WriteLine("Base - Virtual DynamicMethod");
         }
@@ -176,7 +213,8 @@ public class MainPart2
     
     public class DerivedClass : BaseClass
     {
-        public new void StaticMethod()
+        public new void StaticMethod() // "New". (Hiding): Bruges, når den afledte klasse ønsker at definere en ny metode, der ikke er relateret til metoden i baseklassen, selvom de deler samme navn og signatur.
+
         {
             Console.WriteLine("Derived - StaticMethod");
         }
